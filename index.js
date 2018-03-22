@@ -1,5 +1,6 @@
 // run with: node index.js
 const express = require('express');
+var request = require('request');
 var bodyParser = require('body-parser');
 
 const app = express();
@@ -15,7 +16,7 @@ app.get('/', (req, res) => {
     </html>`);
 });
 
-app.get ('/ratemyname', (req, res) => {
+app.get('/ratemyname', (req, res) => {
     res.send(`
     <html>
         <h1>Rate my name!</h1>
@@ -41,4 +42,14 @@ app.post('/ratemyname', urlencodedParser, function (req, res) {
     </html>`);
 });
 
+setInterval(lolPing, 1000);
+
+function lolPing() {
+    request('https://murmuring-dawn-26503.herokuapp.com/apitest', function (error, response, body) {
+        console.log("PING!");
+    });   
+}
+
 app.listen(3000, () => console.log('Name rating app listening on port 3000!'));
+
+// https://murmuring-dawn-26503.herokuapp.com
